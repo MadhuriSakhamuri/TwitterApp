@@ -1,0 +1,47 @@
+<div class="row container-fluid mt-3 d-flex justify-content-left tweet">
+   
+    <mat-card class="card">
+     <div class="card-header" style="background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); padding-left: 250px;"><strong>All Tweets</strong> </div>
+     <div class="col-md-12 card p-3"  style="margin-left:60px;"  *ngIf="allTweets?.length == 0">
+        <p style="padding-left: 70px;"><strong>No tweets yet.</strong></p>
+    </div>
+    <ng-container *ngIf="allTweets?.length != 0">
+        <div class="col-md-12 card p-3" *ngFor="let tweet of allTweets;let i=index;">
+            <div class="row box">
+                <div class="image col-md-12"> <img src="assets/user.jpg" class="rounded" width="155"> </div>
+                <div class="ml-3 w-100 col-md-12">
+                    <h6 class="mb-0 mt-2">{{tweet?.postedBy}}</h6><span class="user-name">@{{tweet?.loginId}}</span><small
+                        class="f-right mt-2 ">{{tweet.createdOn| timeago}}</small><br>
+                    <div class="p-2 mt-2 custom-bg d-flex justify-content-between rounded text-white stats">
+                        <span [innerHTML]="tweet?.body|hmColor"></span>
+                        <span><span class="like_txt">{{tweet?.likes.length}} likes </span><span class="material-icons like_btn" [ngClass]="{'likedTweet': isLiked(tweet)}" (click)="likeTweet(tweet)">thumb_up</span></span>
+                    </div>
+    
+                    <div class="replies mt-2">
+                        <div *ngIf="tweet.replies.length>0" class="p-2 ml-0"
+                            style="border:1px solid #bababa; background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); color: white;">
+                            <strong>Replies</strong></div>
+                        <div *ngFor="let reply of tweet.replies">
+                            <h6 class="mb-0 mt-0 ml-0 mt-3">{{reply?.repliedBy}}</h6><span
+                                class="ml-0 user-name">@{{reply?.replyLoginId}}</span><small
+                                class="f-right mt-2">{{reply?.replyTimestamp| timeago}}</small><br>
+                            <div class="p-2 mt-2 ml-0 bg-primary d-flex justify-content-between rounded text-white stats">
+                                <span [innerHTML]="reply?.replyBody|hmColor"></span>
+                            </div>
+    
+                        </div>
+                    </div>
+                    <div class="reply-box mt-3 ml-5" attr.id={{tweet.id}}>
+                        <div class="input-group mb-3" attr.id={{tweet.id}}>
+                            <input type="text" class="form-control mr-3" maxlength="144" #replyData placeholder="Reply">
+                            <button class=" btn btn-primary" (click)="replyTweet(tweet.id,replyData.value)">Reply</button>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    
+        </div>
+    </ng-container>
+</mat-card>
+</div>

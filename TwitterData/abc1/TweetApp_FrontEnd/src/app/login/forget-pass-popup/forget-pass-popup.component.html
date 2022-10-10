@@ -1,0 +1,49 @@
+<ng-container *ngIf="showOtherModal">
+<form>
+<h1 mat-dialog-title style=" background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);color: white;" class="pop-title text-center">Reset Password</h1>
+<mat-dialog-content class="mat-typography mar-0" *ngIf="!otpSent">
+    <div class="mb-2"><strong>Please Enter your Login ID </strong></div>
+    <input type="text" class="form-control" placeholder="Login Id" name="loginId"  [(ngModel)]="loginId">
+
+</mat-dialog-content>
+<mat-dialog-content class="mat-typography mar-0" *ngIf="otpSent">
+  <div class="mb-2"><strong>Enter the OTP </strong></div>
+  <input type="text" class="form-control" placeholder="Enter OTP" name="otpValue" [(ngModel)]="otpValue">
+
+</mat-dialog-content>
+<mat-dialog-actions align="center" class="pad-10">
+  <button type="submit" *ngIf="!otpSent" class="btn btn-primary text-center" (click)="sendOtp()" cdkFocusInitial>Send OTP</button>
+  <button type="submit" *ngIf="otpSent" class="btn btn-primary text-center"  (click)="validateOtp()" cdkFocusInitial>Validate OTP</button>
+
+</mat-dialog-actions>
+</form>
+</ng-container>
+<ng-container *ngIf="validityFlag ">
+  <h1 mat-dialog-title class="pop-title text-center" style=" background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);">Change Password</h1>
+<form
+  [formGroup]="changePasswordForm"
+  (ngSubmit)="changePassword()"
+  autocomplete="off">
+  <mat-dialog-content class="mat-typography mar-0 row">
+    <div class="col-md-12 form-group">
+        <input type="password"
+        [class.is-invalid]='changePasswordForm.get("password").errors && changePasswordForm.get("password").touched'
+        class="form-control" formControlName="password" placeholder="Password">
+        <div *ngIf="changePasswordForm.get('password').hasError('required')" class='invalid-feedback'>Please enter a Password</div>
+        <div *ngIf="changePasswordForm.get('password').hasError('minlength')" class='invalid-feedback'>Password must be at least 4 characters</div>
+        <div *ngIf="changePasswordForm.get('password').hasError('maxlength')" class='invalid-feedback'>Password must be at max 8 characters</div>
+    </div>
+    <div class="col-md-12 form-group">
+        <input type="password"
+        [class.is-invalid]='changePasswordForm.get("confirmPassword").errors && changePasswordForm.get("confirmPassword").touched'
+        class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+        <div *ngIf="changePasswordForm.get('confirmPassword').hasError('required')" class='invalid-feedback'>Please enter Confirm Password</div>
+        <div *ngIf="changePasswordForm.get('confirmPassword').hasError('isMatching')" class='invalid-feedback'>Both the Passwords must match</div>
+    </div>
+  </mat-dialog-content>
+</form>
+<mat-dialog-actions align="center" class="pad-10 heightset">
+  <button type="submit" class="btn btn-primary text-center"(click)="changePassword()" [disabled]="!changePasswordForm.valid" cdkFocusInitial>Update Password</button>
+</mat-dialog-actions>
+
+</ng-container>

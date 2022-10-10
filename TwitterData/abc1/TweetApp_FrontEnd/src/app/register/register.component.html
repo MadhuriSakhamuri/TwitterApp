@@ -1,0 +1,121 @@
+<mat-card style="margin-left:210px;margin-bottom: 50px;width:800px;border-radius: 50px;">
+        <div class="cotainer" style="padding-right:250px;">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card" style="width:600px;">
+                        <div class="card-header text-center " style="color: black;"><strong>Register</strong>
+
+                        </div>
+                        <div class="card-body" style="width:600px;">
+                            <form [formGroup]='registerForm' (ngSubmit)='register()' autocomplete="off">
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="full_name" class="col-md-3 col-form-label text-md-right">First Name <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input
+                                            [class.is-invalid]='registerForm.get("firstName").errors && registerForm.get("firstName").touched'
+                                            type="text" class="form-control" formControlName="firstName" required>
+                                        <div class='invalid-feedback'>Please enter First Name</div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="full_name" class="col-md-3 col-form-label text-md-right">Last Name <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="text"
+                                            [class.is-invalid]='registerForm.get("lastName").errors && registerForm.get("lastName").touched'
+                                            class="form-control" formControlName="lastName">
+                                        <div class='invalid-feedback'>Please enter Last Name</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="user_name" class="col-md-3 col-form-label text-md-right">Login Id <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="text"
+                                            [class.is-invalid]='registerForm.get("loginID").errors && registerForm.get("loginID").touched'
+                                            class="form-control" formControlName="loginID">
+                                        <div class='invalid-feedback'>Please enter Login ID</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="email_address" class="col-md-3 col-form-label text-md-right">E-Mail <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="email"
+                                            [class.is-invalid]='registerForm.get("email").errors && registerForm.get("email").touched'
+                                            class="form-control" formControlName="email">
+                                        <div *ngIf="registerForm.get('email').hasError('required')" class='invalid-feedback'>
+                                            Please enter Email</div>
+                                        <div *ngIf="registerForm.get('email').hasError('pattern')" class='invalid-feedback'>
+                                            Invalid Email Address</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="phone_number" class="col-md-3 col-form-label text-md-right">Contact Number <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="string" maxlength="10"
+                                            [class.is-invalid]='registerForm.get("contactNumber").errors && registerForm.get("contactNumber").touched'
+                                            class="form-control" formControlName="contactNumber">
+                                        <div *ngIf="registerForm.get('contactNumber').hasError('required')"
+                                            class='invalid-feedback'>Please enter your Contact Number</div>
+                                        <div *ngIf="registerForm.get('contactNumber').hasError('pattern')"
+                                            class='invalid-feedback'>Invalid Phone Number</div>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="user_name" class="col-md-3 col-form-label text-md-right">Password <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="password"
+                                            [class.is-invalid]='registerForm.get("password").errors && registerForm.get("password").touched'
+                                            class="form-control" formControlName="password">
+                                        <div *ngIf="registerForm.get('password').hasError('required')" class='invalid-feedback'>
+                                            Please enter a Password</div>
+                                        <div *ngIf="registerForm.get('password').hasError('minlength')"
+                                            class='invalid-feedback'>Password must be at least 4 characters</div>
+                                        <div *ngIf="registerForm.get('password').hasError('maxlength')"
+                                            class='invalid-feedback'>Password must be at max 8 characters</div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row" style="padding-right:10px;">
+                                    <label for="user_name" class="col-md-3 col-form-label text-md-right">Confirm Password <span
+                                            class="mandatory-notation">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="password"
+                                            [class.is-invalid]='registerForm.get("confirmPassword").errors && registerForm.get("confirmPassword").touched'
+                                            class="form-control" formControlName="confirmPassword">
+                                        <div *ngIf="registerForm.get('confirmPassword').hasError('required')"
+                                            class='invalid-feedback'>Please enter Confirm Password</div>
+                                        <div *ngIf="registerForm.get('confirmPassword').hasError('isMatching')"
+                                            class='invalid-feedback'>Both the Passwords must match</div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class=" form-group col-md-6 offset-md-5">
+                                    <button type="submit" class="btn btn-primary" style="margin-left:-50px;" [disabled]="!registerForm.valid"
+                                        [ngStyle]="{backgroundColor: getColor()}">
+                                        Register
+                                    </button>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</mat-card>

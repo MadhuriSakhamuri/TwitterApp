@@ -1,0 +1,29 @@
+ <mat-card style="margin-left:180px;width:900px;border-radius: 30px; margin-bottom: 10px;">
+    <div class="card-header" style="background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);"><strong style="padding-left:360px;">Post Tweet</strong></div>
+      <div class="card-body">
+        <div class="row container-fluid mt-5 d-flex justify-content-center">
+            <div class="col-md-12 card p-3 ">
+                <div class="d-flex justify-content-center">
+                <div class="user-details" style="border:2px solid #bababa">
+                    <div class="image "> <img src="assets/user.jpg" class="rounded" width="155"> </div>
+                    <div>
+                        <h4 class="mb-0 mt-0">{{userData?.firstName |titlecase}} {{userData?.lastName|titlecase}}</h4><span class="user-name">@{{userName}}</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-12 card p-3">
+                <div class=""><strong>Let's Tweet</strong></div>
+                <div class="row">
+                    <div class="col-md-12"><textarea style="width:100%;" id="tweetText" maxlength="144" [(ngModel)]="tweetData"  ></textarea>
+
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary f-right" [disabled]="tweetData.length==0 || tweetData==null || tweetData.trim()==''" (click)="postTweet()">Post</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</mat-card>

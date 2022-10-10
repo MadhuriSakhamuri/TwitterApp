@@ -1,0 +1,68 @@
+<mat-card style="margin-top: 100px;margin-left: 400px; width:400px; border-radius: 30px;">
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3 style="color: black;" >Sign In</h3>
+			</div>
+			<div class="card-body">
+				<form #loginForm="ngForm"  (ngSubmit)="login()">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon></span>
+							<input type="text" class="form-control" name="loginId"
+						     placeholder="Login ID"
+						     required
+						     [(ngModel)]="model.loginId">
+						</div>
+						
+
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><mat-icon aria-hidden="false" aria-label="Example password icon">password</mat-icon></span>
+							<input type="password" class="form-control" name="password"
+						     placeholder="Password"
+						     required
+						     [(ngModel)]="model.password">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button style="text-align: center; margin-left: 100px;" type="submit" class="btn login_btn" [disabled]="!loginForm.valid">Login</button>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Don't have an account?<a routerLink='/register'>Register Now!</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="javascript:void(0)" (click)='openModal()'>Forgot your password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

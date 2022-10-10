@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-header style="height:40px;width:1200px;text-align: center;padding-left: 550px; padding-top:10px;"><strong >All Users</strong></mat-card-header>
+    <div class="row container-fluid mt-5 d-flex justify-content-center">
+        <div class="card p-3" *ngFor="let user of allUsers">
+            <div class="d-flex justify-content-center">
+                <div class="user-details" style="border:2px solid #bababa">
+                    <div class="image "> <img src="assets/user.jpg" class="rounded" width="155"> </div>
+                    <div>
+                        <h5 class="mb-0 mt-0">{{user.firstName |titlecase}} {{user.lastName|titlecase}}</h5><span
+                            class="user-name">@{{user.loginId}}</span><br>
+                            <button style=" background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);" class="btn btn-primary mt-2" (click)="openIndividualTweetsModal(user.loginId)">Tweets</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

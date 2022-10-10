@@ -1,0 +1,8 @@
+
+ .bg-custom{
+  background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
+}
+.nav-link{
+  font-family: "Times New Roman", Times, serif;
+  cursor: pointer;
+} 
